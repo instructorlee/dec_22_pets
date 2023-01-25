@@ -17,6 +17,9 @@ class User:
         self.email_address = data['email_address']
         self.password = data['password']
 
+    def serialize(self):
+        pass
+        
     @classmethod
     def get_all(cls):
 
@@ -109,7 +112,7 @@ class User:
         return connectToMySQL('dec_22_exm_review').query_db(query, {'id': id})
 
     @staticmethod
-    def validate_registration(user):
+    def validate_registration(user): 
         is_valid = True
 
         if User.get_by_email(user['email_address']):
@@ -137,3 +140,27 @@ class User:
             is_valid = False
 
         return is_valid
+
+    @staticmethod
+    def api_validate_registration(user): 
+        errors = []
+
+        if User.get_by_email(user['email_address']):
+            errors.append("Email already taken")
+
+        if not EMAIL_REGEX.match(user['email_address']):
+            errors.append("Invalid Email Address")
+
+        if len(user['password']) < 8:
+            errors.append("Password must be at least 8 characters")
+
+        if user['password'] != user['password_confirm']:
+            errors.append("Passwords need to match")
+
+        if len(user['first_name']) == 0:
+            errors.append("Enter a first name")
+
+        if len(user['last_name']) < 3:
+            errors.append("Last name must be at least 3 characters")
+
+        return errors

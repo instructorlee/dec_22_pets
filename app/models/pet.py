@@ -15,7 +15,7 @@ class Pet:
         self.liked_by_current_user = data['pet_id'] is not None # boolean
         self.likes=[]
    
-    def to_json(self):
+    def serialize(self):
         return {
             'id': self.id,
             'name': self.name,

@@ -8,6 +8,10 @@ from app.models.user import User
 def home():
     return render_template('home/home.html')
 
+@app.route('/api')
+def api_home():
+    return render_template('home/api_home.html')
+
 @app.route('/dashboard')
 def dashboard():
 
