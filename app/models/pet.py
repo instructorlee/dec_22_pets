@@ -132,6 +132,7 @@ class Pet:
                 age=%(age)s,
                 hobby=%(hobby)s,
                 favorite_snack=%(favorite_snack)s
+                
             WHERE 
                 id = %(id)s;
         """

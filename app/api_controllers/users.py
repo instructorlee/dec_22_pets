@@ -26,11 +26,21 @@ def api_register():
         "email_address": user_data['email_address'],
     })
 
-    return jsonify(), 200
+    return jsonify(), 201
 
 @app.route('/api/user/login', methods=['POST'])
 def api_login():
-    pass
+
+    user_data = request.get_json()
+    
+    user = User.get_by_email(user_data['email_address'])
+
+    if not user or not bcrypt.check_password_hash(user.password, user_data['password']): # hashed password first, password to be checked
+        return {}, 401
+
+    session['user_id'] = user.id
+
+    return jsonify(user.serialize()), 200
 
 @app.route('/api/user/logout')
 def api_logout():

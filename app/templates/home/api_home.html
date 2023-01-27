@@ -17,6 +17,18 @@
     </head>
     <body>
         <div class="container-fluid">
+            <div id="menu_bar" class='row justify-content-center'>
+                <div class='col-3'>
+                    <h2>
+                        Welcome <span class='user_name'></span>!
+                    </h2>
+                </div>
+                <div class='col-9'>
+                    <button class='btn btn-info btn-sm' onClick='setPage("add_pet")'>Add Pet</button>
+                    <button class='btn btn-warning btn-sm' onClick='logout()'>Logout</button>
+                </div>
+            </div>
+
             <div id="login" class='row page justify-content-center'>
                 <div class='col-6'>
                     <h2>Login:</h2>
@@ -24,29 +36,24 @@
 
                         <div class='col-12'>
                             <label for='email_address'>Email:</label>
-                            <input type='email' name='email_address'>
+                            <input type='email' name='email_address' value="fred@bedrock.com">
                         </div>
 
                         <div class='col-12'>
                             <label for='password'>Password:</label>
-                            <input type='password' name='password'>
+                            <input type='password' name='password' value="password">
                         </div>
 
-                        <div class='col-12'>
-                            <div class='row'>
-                                <div class = 'col-12 text-center'>
-                                    <a href="#" onClick="setPage('register'); return false;">Register</a>
-                                    <input type="submit" class="btn btn-success" value="Login">
-                                </div>
-                            </div>
+                        <div class'col-12 text-center'>
+                            <input type="submit" class="btn btn-success" value="Login">
                         </div>
                     </form>
-                    
+                    <a href="#" onClick="setPage('register'); return false;">Register</a>
                 </div>
             </div>
+
             <div id="register" class='row page justify-content-center'>
                 <div class='col-6'>
-                    <h2>Register:</h2>
                     <form id='registerForm' class='row' action='/user/register' method='POST' >
 
                         <div class='col-6'>
@@ -73,21 +80,67 @@
                             <label for='password_confirm'>ConfirmPassword:</label>
                             <input type='password' name='password_confirm'>
                         </div>
-                        
-                        <div class='col-12'>
-                            <div class='row'>
-                                <div class = 'col-12 text-center'>
-                                    <a href="#" onClick="setPage('login'); return false;">Login</a>
-                                    <input type="submit" class="btn btn-success" value="Register">
-                                </div>
-                            </div>
+
+                        <div class'col-12 text-center'>
+                            <input type="submit" class="btn btn-success" value="Register">
                         </div>
                     </form>
-                    
+                    <a href="#" onClick="setPage('login'); return false;">Login</a>
                 </div>
             </div>
+            
             <div id="dashboard" class='row page'>
-                Dashboard
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Age</th>
+                            <th>Likes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id='pets_list'>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="add_pet" class='row page'>
+                <div class='col-7 dashboard__panel '>
+                    <h1>Add Pet</h1>
+                    <form id="addPetForm" class='row justify-content-center'>
+
+                        <div class='col-6'>
+                            <label for='name'>Name:</label>
+                            <input type='text' name='name'>
+                        </div>
+
+                        <div class='col-6'>
+                            <label for='age'>age:</label>
+                            <input type='number' name='age'>
+                        </div>
+
+                        <div class='col-6'>
+                            <label for='type'>type:</label>
+                            <input type='text' name='type'>
+                        </div>
+
+                        <div class='col-6'>
+                            <label for='hobby'>Hobby:</label>
+                            <input type='text' name='hobby'>
+                        </div>
+
+                        <div class='col-6'>
+                            <label for='favorite_snack'>Fav Snack:</label>
+                            <input type='text' name='favorite_snack'>
+                        </div>
+
+                        <div class='col-12 text-center'>
+                            <input class='btn btn-success' type='submit' value='Add Pet'>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 

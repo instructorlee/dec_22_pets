@@ -5,7 +5,11 @@ from app.models.pet import Pet
 
 @app.route('/api/pet')
 def api_all_pets():
-    pass
+
+    if 'user_id' not in session:
+        return {}, 401
+
+    return jsonify( [ pet.serialize() for pet in Pet.get_all() ] ), 200 # list comprehension
 
 @app.route('/api/pet/<int:pet_id>')
 def api_view_pet(pet_id):
@@ -30,9 +34,7 @@ def api_add_pet():
         'user_id': session['user_id']
     }
 
-    id = Pet.save(new_pet)
-
-    return Pet.get_one(id).serialize(), 201
+    return Pet.get_one(Pet.save(new_pet)).serialize(), 201
 
 @app.route('/api/pet/update', methods=['POST']) 
 def api_update_pet():

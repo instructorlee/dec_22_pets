@@ -18,7 +18,10 @@ class User:
         self.password = data['password']
 
     def serialize(self):
-        pass
+        return {
+            'id': self.id,
+            'first_name': self.first_name
+        }
         
     @classmethod
     def get_all(cls):
