@@ -20,7 +20,7 @@
                 <div class='col-7 dashboard__panel '>
                     <h1>Add Pet</h1>
 
-                    <form class='row justify-content-center' action='/pet/add' method='POST'>
+                    <form class='row justify-content-center' action='/pet/add' method='POST' enctype='multipart/form-data'>
 
                         <div class='col-6'>
                             <label for='name'>Name:</label>
@@ -45,6 +45,11 @@
                         <div class='col-6'>
                             <label for='favorite_snack'>Fav Snack:</label>
                             <input type='text' name='favorite_snack'>
+                        </div>
+
+                        <div class='col-6'>
+                            <label for='image_path'>Image:</label>
+                            <input type='file' name='image_path'>
                         </div>
 
                         <div class='col-12 text-center'>

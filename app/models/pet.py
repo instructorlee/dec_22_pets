@@ -11,6 +11,7 @@ class Pet:
         self.hobby = data['hobby']
         self.user_id = data['user_id']
         self.favorite_snack = data['favorite_snack']
+        self.image_path = data['image_path']
         self.likes_count = data['likes_count']
         self.liked_by_current_user = data['pet_id'] is not None # boolean
         self.likes=[]
@@ -75,9 +76,9 @@ class Pet:
         query = """
             INSERT INTO 
                 pets 
-                (name, type, age, hobby, favorite_snack, user_id) 
+                (name, type, age, hobby, favorite_snack, user_id, image_path) 
             VALUES 
-                (%(name)s, %(type)s, %(age)s, %(hobby)s, %(favorite_snack)s, %(user_id)s);
+                (%(name)s, %(type)s, %(age)s, %(hobby)s, %(favorite_snack)s, %(user_id)s, %(image_path)s);
         """
 
         result = connectToMySQL('dec_22_exm_review').query_db(query, data)

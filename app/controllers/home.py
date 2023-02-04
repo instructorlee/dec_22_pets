@@ -19,3 +19,4 @@ def dashboard():
         return redirect('/')
     
     return render_template('home/dashboard.html', pets=Pet.get_all(session['user_id']), user=User.get_one(int(session['user_id'])))
+
